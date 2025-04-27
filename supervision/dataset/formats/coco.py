@@ -199,7 +199,6 @@ def load_coco_annotations(
     coco_data = read_json_file(file_path=annotations_path)
     classes = coco_categories_to_classes(coco_categories=coco_data["categories"])
 
-    # RAFA: Do we need this? (Why re-mapping the class ids?) Is it possible to make it optional?
     class_index_mapping = build_coco_class_index_mapping(
         coco_categories=coco_data["categories"], target_classes=classes
     )
@@ -229,7 +228,6 @@ def load_coco_annotations(
             use_precomputed_area=use_precomputed_area,
         )
 
-        # RAFA: Do we need this? (Why re-mapping the class ids?) Is it possible to make it optional?
         annotation = map_detections_class_id(
             source_to_target_mapping=class_index_mapping,
             detections=annotation,
